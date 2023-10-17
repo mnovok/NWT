@@ -1,0 +1,16 @@
+.dropdown {
+    position: absolute;
+    margin-top: 5%;
+    background-color:lightseagreen;
+    color: rgb(241, 238, 234);
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+}
+
+.dropdown p{
+    padding-top: 10%;
+}
+  

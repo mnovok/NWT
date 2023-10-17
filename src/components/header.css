@@ -1,0 +1,15 @@
+.navBar{
+    display: flex;
+    justify-content: space-evenly;
+    background-color:lightseagreen;
+    color: rgb(241, 238, 234);
+}
+
+.navBar p{
+    font-family: 'Dancing Script';
+    font-size: larger;
+}
+
+.navBar p:hover{
+    color: rgb(75, 92, 157);
+}

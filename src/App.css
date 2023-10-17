@@ -1,5 +1,10 @@
 .App {
-  text-align: center;
+  text-align: left;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.App h1, p{
+  margin: 2%;
 }
 
 .App-logo {
