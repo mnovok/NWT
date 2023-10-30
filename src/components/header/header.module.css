@@ -1,0 +1,129 @@
+.mainHeader {
+    background-color:#3091a2;
+}
+
+.innerHeaderContainer {
+    background: url('../../../public/header03.jpg');
+    text-align: center;
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    color: #FFF;
+    text-shadow: 1px 1px 1px #333;
+    min-height: 50vh;
+}
+
+.headerTitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: 80px;
+    margin-bottom: 30px;
+}
+
+.primaryNavigation {
+    background-color: #3091a2;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: -1px;
+    transition: all 0.2s;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    border-top: 2px solid white;
+    z-index: 1;
+}
+
+.primaryNavigation ul {
+    display: flex;
+}
+
+.primaryNavigation ul li {
+    list-style: none;
+    margin: 0 auto;
+    border-left: 2px solid #3ca0e7;
+    padding: 0 30px;
+    position: relative; /*bitno za sub meni*/
+}
+
+.primaryNavigation ul li:first-of-type {
+    border-left: none;
+}
+
+.primaryNavigation li a {
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.primaryNavigation li a:hover {
+    color: #3ca0e7;
+}
+
+.primaryNavigation ul li ul {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+    position: absolute;
+    padding-left: 0;
+    left: 0;
+    background-color: #3091a2; 
+}
+
+.primaryNavigation ul li:hover>ul,
+.primaryNavigation ul li ul:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    min-width: 250px;
+    padding-top: 20px;
+}
+
+.primaryNavigation ul li ul li {
+    margin-bottom: 20px;
+}
+
+.primaryNavigation ul li ul li a {
+    transition: all 0.5s ease;
+    text-decoration: none;
+}
+
+.primaryNavigation ul li ul li a:hover {
+    padding-left: 10px;
+    border-left: 2px solid #3ca0e7;
+}
+
+.scrollingPrimaryNavigation {
+    background-color: #3091a2;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: -1px;
+    transition: all 0.2s;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 0; 
+    border-top-width: 0;
+}
+
+.scrollingPrimaryNavigation li, .primaryNavigation li{
+    list-style: none;
+}
+
+.scrollingPrimaryNavigation .logo {
+    align-items: flex-start;
+    justify-content: flex-start;
+    /* margin-right: auto; */
+}
