@@ -9,6 +9,8 @@
     height: auto;
     position: relative;
     overflow: hidden;
+    border-radius: 0 0 85% 85% / 30%;
+    border-bottom: 3px white solid;
 }
 
 .overlay {
@@ -17,6 +19,8 @@
     padding: 50px;
     color: #FFF;
     text-shadow: 1px 1px 1px #333;
+    background-image: linear-gradient(135deg, #05c5ff21 10%, #08d8fd2c 10%);
+    border-radius: 0 0 85% 85% / 30%;
     min-height: 50vh;
 }
 
@@ -38,7 +42,7 @@
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 0 0 50% 50% / 0 0 100% 100%;
-    border-top: 2px solid white;
+    border-top: white;
     z-index: 1;
 }
 
@@ -58,7 +62,7 @@
     border-left: none;
 }
 
-.primaryNavigation li a {
+.primaryNavigation li a, .scrollingPrimaryNavigation a {
     color: white;
     font-family: 'Dancing Script', cursive;
     text-decoration: none;
@@ -66,7 +70,7 @@
     cursor: pointer;
 }
 
-.primaryNavigation li a:hover {
+.primaryNavigation li a:hover, .scrollingPrimaryNavigation a:hover {
     color: #3ca0e7;
 }
 
@@ -123,7 +127,11 @@
 }
 
 .scrollingPrimaryNavigation .logo {
-    align-items: flex-start;
-    justify-content: flex-start;
-    /* margin-right: auto; */
+  font-size: 30px;
+  color: white;
+  font-family: "Dancing Script", cursive;
+  position: absolute;
+  left: 30px;
+  opacity: 1;
+  transition: all 0.5s;
 }

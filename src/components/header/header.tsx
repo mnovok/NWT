@@ -1,48 +1,6 @@
-// import React, { useState, Component } from "react";
-// import './header.css';
-// import Dropdown from "../dropdown";
-
-// interface ITestState {
-//     isDropdownVisible: boolean;
-// }
-
-
-// class Header extends React.Component<{}, ITestState>{
-//     constructor(props: {}) {
-//         super(props);
-//         this.state = {
-//           isDropdownVisible: false,
-//         };
-//       }
-    
-//       handleMouseEnter = () => {
-//         this.setState({ isDropdownVisible: true });
-//       };
-    
-//       handleMouseLeave = () => {
-//         this.setState({ isDropdownVisible: false });
-//       };
-
-//     render(){
-//         return(
-//             <div className="navBar">
-//                 <p>Početna</p>
-//                 <p className="menu"
-//                  onMouseEnter={this.handleMouseEnter}
-//                  onMouseLeave={this.handleMouseLeave}
-//                 >
-//                     Nacionalni parkovi</p>
-//                     {this.state.isDropdownVisible && <Dropdown />}
-//                 <p>Komentari</p>
-//             </div>
-//         );
-//     }
-// }
-
-// export default Header;
-
 import * as React from 'react';
 import styles from './header.module.css';
+import { Link } from "react-router-dom";
 
 export interface HeaderProps {
 
@@ -77,7 +35,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
     };
 
     render() {
-          const { isScrolling } = this.state;
+        const { isScrolling } = this.state;
         
         return (
             <>
@@ -97,27 +55,32 @@ class Header extends React.Component<HeaderProps, HeaderState> {
                 <nav id="navigation" className={
                     isScrolling ? `${styles.primaryNavigation} ${styles.scrollingPrimaryNavigation}` : styles.primaryNavigation}
                     >
-                    <li className={styles.logo}>
+                    {/* <li className={styles.logo}>
                         {isScrolling && (
                         <a href='#'>Np</a>
                          )}
-                    </li>  
+                    </li>   */}
+                     <span className={styles.logo}>
+                        {isScrolling && (
+                        <a href='#'>Np</a>
+                         )}
+                    </span>
 
                     <ul>
-                        <li><a href="#">Početna</a></li>
-                        <li><a href="#">Nacionalni parkovi</a>
+                    <li><Link to={`/`}>Početna</Link></li>
+                        <li><Link to={`/park/${0}`}>Nacionalni parkovi</Link>
                             <ul className="dropdown">
-                                <li><a href="#">NP Brijuni</a></li>
-                                <li><a href="#">NP Krka</a></li>
-                                <li><a href="#">NP Paklenica</a></li>
-                                <li><a href="#">NP Plitvička jezera</a></li>
-                                <li><a href="#">NP Kornati</a></li>
-                                <li><a href="#">NP Mljet</a></li>
-                                <li><a href="#">NP Risnjak</a></li>
-                                <li><a href="#">NP Sjeverni Velebit</a></li>
+                                <li><Link to={`/park/${0}`}>NP Brijuni</Link></li>
+                                <li><Link to={`/park/${1}`}>NP Krka</Link></li>
+                                <li><Link to={`/park/${2}`}>NP Paklenica</Link></li>
+                                <li><Link to={`/park/${3}`}>NP Plitvička jezera</Link></li>
+                                <li><Link to={`/park/${4}`}>NP Kornati</Link></li>
+                                <li><Link to={`/park/${5}`}>NP Mljet</Link></li>
+                                <li><Link to={`/park/${6}`}>NP Risnjak</Link></li>
+                                <li><Link to={`/park/${7}`}>NP Sjeverni Velebit</Link></li>
                             </ul>
                         </li>
-                        <li><a href="#">Komentari</a></li>
+                        <li><Link to={`/comment`}>Komentari</Link></li>
                     </ul>
                 </nav>
             </>
