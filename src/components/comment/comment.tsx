@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styles from "./comment.module.css";
+import AddComment from '../addComment/addComment';
 
 export interface CommentsProps {
 
@@ -26,6 +27,21 @@ class Comments extends React.Component<CommentsProps, CommentsState> {
             comments: [],
         };
     }
+
+    addComment = (email: string, comment: string): void => {
+        this.setState({
+            comments: [
+                ...this.state.comments,
+                {
+                    id: this.state.comments.length + 1,
+                    body: comment,
+                    email,
+                    name: '',
+                    postId: 0,
+                },
+            ],
+        });
+    };
 
     componentDidMount(): void {
         fetch('https://jsonplaceholder.typicode.com/comments?_limit=10')
@@ -84,6 +100,7 @@ class Comments extends React.Component<CommentsProps, CommentsState> {
                         <div className={styles.commentBody}>{comment.body}</div>
                     </div>
                 ))}
+                <AddComment submitHandler={(email, comment) => this.addComment(email, comment)} />
                 </div>  
             </>);
     }
