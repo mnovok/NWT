@@ -1,16 +1,22 @@
 import * as React from 'react';
 import styles from "./comment.module.css";
 import AddComment from '../addComment/addComment';
+import { connect } from 'react-redux';
+import { addComment as addCommentAction } from '../../redux/actions/commentActions';
 
-export interface CommentsProps {
-
-}
-
-export interface CommentsState {
+interface CommentsProps {
     comments: Comment[];
     isLoading?: boolean;
     error?: any;
-}
+    addComment: (email: string, comment: string) => void;
+  }
+  
+
+  interface CommentsState {
+    localComments: Comment[];
+    isLoading?: boolean;
+    error?: any;
+  }
 
 interface Comment {
     postId: number;
@@ -24,16 +30,16 @@ class Comments extends React.Component<CommentsProps, CommentsState> {
     constructor(props: CommentsProps) {
         super(props);
         this.state = {
-            comments: [],
+            localComments: [],
         };
     }
 
     addComment = (email: string, comment: string): void => {
         this.setState({
-            comments: [
-                ...this.state.comments,
+            localComments: [
+                ...this.state.localComments,
                 {
-                    id: this.state.comments.length + 1,
+                    id: this.state.localComments.length + 1,
                     body: comment,
                     email,
                     name: '',
@@ -51,9 +57,9 @@ class Comments extends React.Component<CommentsProps, CommentsState> {
             }
             throw new Error("Something went wrong!");
         })
-        .then((comments) => {
+        .then((localComments) => {
             this.setState({ 
-                comments, 
+                localComments, 
                 isLoading: false, 
                 error: null });
           })
@@ -69,7 +75,10 @@ class Comments extends React.Component<CommentsProps, CommentsState> {
 
 
     render() {
-        const { comments, isLoading, error } = this.state;
+        const { comments, isLoading, error, addComment } = this.props;
+        const { localComments } = this.state;
+    
+        const allComments = [...comments, ...localComments]; 
 
         if (isLoading) {
           return <div>Loading comments...</div>;
@@ -84,7 +93,7 @@ class Comments extends React.Component<CommentsProps, CommentsState> {
                     <h1 className={styles.title}>Komentari :</h1>
                 </div>
                 <div className={styles.commentsContainer}>
-                {comments.map((comment) => (
+                {allComments.map((comment) => (
                     <div className={styles.commentContainer} key={comment.id}>
                         <div className={styles.commentPersonal}>
                             <div className={styles.commentEmail}>
@@ -100,10 +109,37 @@ class Comments extends React.Component<CommentsProps, CommentsState> {
                         <div className={styles.commentBody}>{comment.body}</div>
                     </div>
                 ))}
-                <AddComment submitHandler={(email, comment) => this.addComment(email, comment)} />
+                   <AddComment
+                        submitHandler={(email, comment) => {
+                        // Save new comments locally
+                        const newComment = {
+                            id: localComments.length + 1,
+                            body: comment,
+                            email,
+                            name: '',
+                            postId: 0,
+                        };
+                        this.setState((prevState) => ({
+                            localComments: [...prevState.localComments, newComment],
+                        }));
+
+                        // Dispatch action to add comment to Redux store
+                        addComment(email, comment);
+                        }}
+                    />
                 </div>  
             </>);
     }
 }
 
-export default Comments;
+// export default Comments;
+
+const mapStateToProps = (state: any) => ({
+    comments: state.comments,
+  });
+
+const mapDispatchToProps = {
+    addComment: addCommentAction,
+  };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);

@@ -42,6 +42,20 @@ class Park extends Component<ParkProps, ParkState> {
     };
   }
 
+  extractParkData(){
+    const newId = +this.props.match?.params?.id;
+    const newPark = parksData.parks?.filter((park) => park.id === newId)[0]
+    this.setState({
+      park: newPark,
+    })
+  } 
+
+  componentDidUpdate(prevProps: ParkProps, prevState: ParkState) {
+      if(prevProps.match?.params?.id != this.props.match?.params?.id){
+        this.extractParkData()
+      }
+  } 
+
   render() {
     return (
       <>
@@ -53,7 +67,11 @@ class Park extends Component<ParkProps, ParkState> {
           <div className={styles.posts}>
             {this.state.park.posts.map((post, index) => {
               const image = (
-                <img src={post.image} className={styles.postImage} alt={post.title}></img>
+                <img 
+                  src={post.image} 
+                  className={styles.postImage} 
+                  alt={post.title}>      
+                  </img>
               );
               return(
                 <div className={styles.postContainer} key={index}>

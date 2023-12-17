@@ -32,3 +32,30 @@ class Hello extends Component<HelloProps, HelloState>{
 }
 
 export default Hello;
+
+/*
+import React, { useState, useEffect } from "react";
+
+export interface HelloProps {}
+
+const Hello: React.FC<HelloProps> = () => {
+  const [name, setName] = useState<string>('Jure');
+
+  useEffect(() => {
+    setName('Mate');
+    console.log("Did Mount");
+    console.log(name);
+  }, []);
+
+  console.log("Konstruktor");
+  console.log(name);
+
+  return (
+    <div>
+      <p>{name}</p>
+    </div>
+  );
+};
+
+export default Hello;
+*/

@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+import { Provider } from 'react-redux';
+import store from "./redux/store/configureStore";
 
 import Header from "./components/header/header";
 import Home from "./components/home/home";
@@ -14,6 +16,7 @@ import {
 
 function App() {
   return (
+    <Provider store={store}>
     <div className="App">
       <Router>
         <Header />
@@ -29,13 +32,14 @@ function App() {
             }} />
             <Route exact path='/comment' render={(routeProps: any) => {
               return(
-                <Comment/>
+                <Comment {...routeProps}/>
               )
             }} />
           </Switch>
         </div>
       </Router>
     </div>
+    </Provider>
   );
 }
 
