@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styles from './home.module.css';
 
 export interface HomeProps {
     
